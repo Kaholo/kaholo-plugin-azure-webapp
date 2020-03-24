@@ -1,0 +1,146 @@
+{
+  "name": "AzureWebApps",
+  "type": "executer",
+  "main": "app.js",
+  "execProgram": "node",
+  "exposeRoute": false,
+  "imgUrl": "logo.png",
+  "version": "1.0.0",
+  "settings" : [
+    {
+      "name": "clientId",
+      "viewName": "Client or App ID",
+      "type": "string"
+    },
+    {
+      "name": "secret",
+      "viewName": "Secret or Password",
+      "type": "vault"
+    },
+    {
+      "name": "domain",
+      "viewName": "Domain or Tenant ID",
+      "type": "string"
+    },
+    {
+      "name": "subscriptionId",
+      "viewName": "Subscription ID",
+      "type": "string"
+    }
+  ],
+  "methods": [
+    {
+      "name": "createApp",
+      "viewName": "Create App",
+      "params": [
+        {
+          "name": "resourceGroupName",
+          "viewName": "Resource Group",
+          "type": "string"
+        },
+        {
+          "name": "location",
+          "viewName": "Location",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "viewName": "App Name",
+          "type": "string"
+        },
+        {
+          "name": "servicePlanID",
+          "viewName": "Service Plan ID",
+          "type": "string"
+        },
+        {
+          "name": "siteConfigAlwaysOn",
+          "viewName": "Site Config AlwaysOn",
+          "type": "boolean"
+        },
+        {
+          "name": "siteConfigAppCl",
+          "viewName": "Site Config AppCommandLine",
+          "type": "string"
+        },
+        {
+          "name": "siteConfig",
+          "viewName": "SiteConfig (Obj)",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "createServicePlan",
+      "viewName": "Create Service Plan",
+      "params": [
+        {
+          "name": "resourceGroupName",
+          "viewName": "Resource Group Name",
+          "type": "string"
+        },
+        {
+          "name": "location",
+          "viewName": "Location",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "viewName": "Service Plan Name",
+          "type": "string"
+        },
+        {
+          "name": "skuTier",
+          "viewName": "SKU Tier",
+          "type": "string"
+        },
+        {
+          "name": "skuSize",
+          "viewName": "SKU Size",
+          "type": "string"
+        },
+        {
+          "name": "reserved",
+          "viewName": "Reserved",
+          "type": "boolean"
+        },
+        {
+          "name": "isXenon",
+          "viewName": "Is Xenon",
+          "type": "boolean"
+        },
+        {
+          "name": "hyperV",
+          "viewName": "HyperV",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "createDeploymentSlot",
+      "viewName": "Create Deployment Slot",
+      "params": [
+        {
+          "name": "resourceGroupName",
+          "viewName": "Resource Group Name",
+          "type": "string"
+        },
+        {
+          "name": "location",
+          "viewName": "Location",
+          "type": "string"
+        },
+        {
+          "name": "appName",
+          "viewName": "App Name",
+          "type": "string"
+        },
+        {
+          "name": "slotName",
+          "viewName": "Slot Name",
+          "type": "string"
+        }
+      ]
+    }
+  ]
+}

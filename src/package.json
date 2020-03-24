@@ -1,0 +1,15 @@
+{
+  "name": "kaholo-plugin-azure-webapps",
+  "version": "2.0.0",
+  "description": "Azure WebApps plugin for Kaholo",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kaholo team (Matan Kadosh)",
+  "license": "ISC",
+  "dependencies": {
+    "@azure/ms-rest-nodeauth": "^3.0.3",
+    "azure-arm-website": "^5.7.0"
+  }
+}
