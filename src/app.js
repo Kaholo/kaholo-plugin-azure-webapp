@@ -1,5 +1,6 @@
 const msRest = require('@azure/ms-rest-nodeauth');
-import { WebSiteManagementClient, WebSiteManagementModels } from 'azure-arm-website';
+const armWebsite = require('azure-arm-website');
+
 
 module.exports = {
     createApp: createApp,
@@ -23,7 +24,7 @@ function _getWebSiteManagementClient(action, settings) {
 			 * Create new webapps mamagement client using the credentials and subscription ID
 			 * And returns the new webapps mamagement client
 			 */
-            return new WebSiteManagementClient(credentials, (action.params.subscriptionId || settings.subscriptionId));
+            return new armWebsite.WebSiteManagementClient(credentials, (action.params.subscriptionId || settings.subscriptionId));
         });
 }
 
@@ -40,17 +41,28 @@ function createApp(action,settings){
             action.params.siteConfig = action.params.siteConfig || {};
         } 
 
-        /**
-         * @type WebSiteManagementModels.SiteConfig
-         */
-        const siteConfig = {
-            alwaysOn : action.params.siteConfigAlwaysOn,
-            appCommandLine: action.params.siteConfigAppCl,
-            ...action.params.siteConfig
-        };
+        let alwaysOn = false;
+        if (typeof action.params.siteConfigAlwaysOn == 'string'){
+            if (action.params.siteConfigAlwaysOn === "true")
+                alwaysOn = true;
+        } else if (typeof action.params.siteConfigAlwaysOn === 'boolean'){
+            alwaysOn = action.params.siteConfigAlwaysOn;
+        }
 
         /**
-         * @type WebSiteManagementModels.Site
+         * @type armWebsite.WebSiteManagementModels.SiteConfig
+         */
+        let siteConfig = {
+            alwaysOn : alwaysOn,
+            appCommandLine: action.params.siteConfigAppCl || undefined
+        };
+
+        if(action.params.siteConfig)
+            siteConfig = Object.assign(siteConfig,action.params.siteConfig)
+
+
+        /**
+         * @type armWebsite.WebSiteManagementModels.Site
          */
         const webApp = {
             location : action.params.location,
@@ -67,14 +79,14 @@ function createDeploymentSlot(action, settings){
     return _getWebSiteManagementClient(action,settings).then(webManagementClient=>{
         
         /**
-         * @type WebSiteManagementModels.Deployment
+         * @type armWebsite.WebSiteManagementModels.Deployment
          */
         const deploymentSlot = {
             location : action.params.location,
             name : action.params.slotName
         }
 
-        return webManagementClient.webApps.createDeploymentSlot(action.params.resourceGroupName, action.parmas.appName, "", action.params.slotName, deploymentSlot)
+        return webManagementClient.webApps.createDeploymentSlot(action.params.resourceGroupName, action.params.appName, "", action.params.slotName, deploymentSlot)
     })
 }
 
@@ -82,7 +94,7 @@ function createServicePlan(action,settings){
     return _getWebSiteManagementClient(action,settings).then(webManagementClient=>{
         
         /**
-         * @type WebSiteManagementModels.AppServicePlan
+         * @type armWebsite.WebSiteManagementModels.AppServicePlan
          */
         const servicePlan = {
             location : action.params.location,
