@@ -1,5 +1,5 @@
 const msRest = require('@azure/ms-rest-nodeauth');
-const armWebsite = require('azure-arm-website');
+const armWebsite = require('@azure/arm-appservice');
 
 
 module.exports = {
@@ -12,7 +12,7 @@ module.exports = {
  * Internal function for handling authentication and generation of website managmnet client
  * @param {*} action 
  * @param {*} settings 
- * @returns Promise<WebSiteManagementClient>
+ * @returns Promise<armWebsite.WebSiteManagementClient>
  */
 function _getWebSiteManagementClient(action, settings) {
 	/**

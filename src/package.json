@@ -9,7 +9,7 @@
   "author": "Kaholo team (Matan Kadosh)",
   "license": "ISC",
   "dependencies": {
-    "@azure/ms-rest-nodeauth": "^3.0.3",
-    "azure-arm-website": "^5.7.0"
+    "@azure/arm-appservice": "^6.0.0",
+    "@azure/ms-rest-nodeauth": "^3.0.3"
   }
 }
