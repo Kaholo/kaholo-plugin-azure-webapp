@@ -1,13 +1,6 @@
 const msRest = require('@azure/ms-rest-nodeauth');
 const armWebsite = require('@azure/arm-appservice');
 
-
-module.exports = {
-    createApp: createApp,
-    createDeploymentSlot : createDeploymentSlot,
-    createServicePlan: createServicePlan
-}
-
 /**
  * Internal function for handling authentication and generation of website managmnet client
  * @param {*} action 
@@ -79,14 +72,19 @@ function createDeploymentSlot(action, settings){
     return _getWebSiteManagementClient(action,settings).then(webManagementClient=>{
         
         /**
-         * @type armWebsite.WebSiteManagementModels.Deployment
+         * @type armWebsite.WebSiteManagementModels.Site
          */
-        const deploymentSlot = {
+        const site = {
             location : action.params.location,
-            name : action.params.slotName
+            enabled : true
         }
 
-        return webManagementClient.webApps.createDeploymentSlot(action.params.resourceGroupName, action.params.appName, "", action.params.slotName, deploymentSlot)
+        return webManagementClient.webApps.createOrUpdateSlot(
+            action.params.resourceGroupName,
+            action.params.appName,
+            site,
+            action.params.slotName
+        );
     })
 }
 
@@ -109,4 +107,10 @@ function createServicePlan(action,settings){
         
         webManagementClient.appServicePlans.createOrUpdate(action.params.resourceGroupName, action.params.name, servicePlan)
     })
+}
+
+module.exports = {
+    createApp: createApp,
+    createDeploymentSlot : createDeploymentSlot,
+    createServicePlan: createServicePlan
 }
