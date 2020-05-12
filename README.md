@@ -50,7 +50,7 @@ Description of a SKU for a scalable resource.
 
 **Description:**
 
-This method create s Deployment slot following the [documentation](https://docs.microsoft.com/en-us/rest/api/appservice/webapps/createdeployment)
+This method create s Deployment slot following the [documentation](https://docs.microsoft.com/en-us/rest/api/appservice/webapps/createorupdateslot)
 
 **Parameters**
 
