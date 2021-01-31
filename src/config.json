@@ -255,6 +255,11 @@
           "functionName": "getApps"
         },
         {
+          "name": "newAppName",
+          "viewName": "New App name",
+          "type": "string"
+        },
+        {
           "name": "location",
           "viewName": "Location",
           "type": "options",

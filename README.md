@@ -32,9 +32,10 @@ This method clones an existing app service. It gets the original app and uses it
 **Parameters**
 
 1. Resource Group: Resource group
-3. App: The app to clone.
-2. Location: (String) New app location.
-4. Service Plan: The service plan for the new app.
+2. App: The app to clone.
+3. New App name: The name of the new app.
+4. Location: (String) New app location.
+5. Service Plan: The service plan for the new app.
 
 ## Method: Create Service Plan
 
@@ -45,16 +46,16 @@ This method creates a service plan following the [documentation](https://docs.mi
 **Parameters**
 
 1. Resource Group: Resource group
-1. Location: (String), Resource Location
-2. Service Plan Name: (String) Name of the App Service plan.
+2. Location: (String), Resource Location
+3. Service Plan Name: (String) Name of the App Service plan.
 
 Description of a SKU for a scalable resource.
 
-3. SKU Tier: (String), Service tier of the resource SKU.
-4. SKU Size: (String), Size specifier of the resource SKU.
-5. Reserved: (Boolean), If Linux app service plan true, false otherwise.
-6. Is Xenon: (Boolean), Obsolete: If Hyper-V container app service plan true, false otherwise.
-7. HyperV: (Boolean), If Hyper-V container app service plan true, false otherwise.
+4. SKU Tier: (String), Service tier of the resource SKU.
+5. SKU Size: (String), Size specifier of the resource SKU.
+6. Reserved: (Boolean), If Linux app service plan true, false otherwise.
+7. Is Xenon: (Boolean), Obsolete: If Hyper-V container app service plan true, false otherwise.
+8. HyperV: (Boolean), If Hyper-V container app service plan true, false otherwise.
 
 
 ## Method: Create Deployment Slot
@@ -80,7 +81,6 @@ This method deletes an app. More information can be found on Azure's [documentat
 
 1. Resource Group: Resource group
 2. App: The name of the app to delete.
-
 
 ## Method: Delete Deployment Slot
 
@@ -118,4 +118,4 @@ In order to use this method deployment username and password are required. These
 1. Zip Path - the path of the zip file to upload.
 2. App: The service app to upload the zip to
 3. Username: the deployment user to use.
-2. Password: the deployment user password.
+4. Password: the deployment user password.

@@ -164,10 +164,11 @@ async function cloneApp(action,settings){
 
     const webManagementClient = await _getWebSiteManagementClient(action,settings);
     const resourceGroupName = parsers.autocomplete(action.params.resourceGroupName);
-    const appName = action.params.name;
+    const baseAppName = parsers.autocomplete(action.params.name);
+    const newAppName = action.params.newAppName;
     const servicePlan = parsers.autocomplete(action.params.servicePlanID);
     
-    const baseApp = await webManagementClient.webApps.get(resourceGroupName, appName);
+    const baseApp = await webManagementClient.webApps.get(resourceGroupName, baseAppName);
     
     const serverFarmId = servicePlan ? 
         `/subscriptions/${action.params.subscriptionId || settings.subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.Web/serverFarms/${servicePlan}` : 
@@ -183,7 +184,7 @@ async function cloneApp(action,settings){
         siteConfig: baseApp.siteConfig
     }
         
-    return webManagementClient.webApps.createOrUpdate(resourceGroupName, appName, webApp);
+    return webManagementClient.webApps.createOrUpdate(resourceGroupName, newAppName, webApp);
 }
 
 module.exports = {
