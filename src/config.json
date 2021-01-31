@@ -5,7 +5,7 @@
   "execProgram": "node",
   "exposeRoute": false,
   "imgUrl": "logo.png",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "settings" : [
     {
       "name": "clientId",
@@ -36,7 +36,9 @@
         {
           "name": "resourceGroupName",
           "viewName": "Resource Group",
-          "type": "string"
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "getResourceGroups"
         },
         {
           "name": "location",
@@ -212,8 +214,10 @@
         },
         {
           "name": "servicePlanID",
-          "viewName": "Service Plan ID",
-          "type": "string"
+          "viewName": "Service Plan",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "getServicePlans"
         },
         {
           "name": "siteConfigAlwaysOn",
@@ -233,13 +237,209 @@
       ]
     },
     {
+      "name": "cloneApp",
+      "viewName": "Clone App",
+      "params": [
+        {
+          "name": "resourceGroupName",
+          "viewName": "Resource Group",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "getResourceGroups"
+        },
+        {
+          "name": "name",
+          "viewName": "App",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "getApps"
+        },
+        {
+          "name": "location",
+          "viewName": "Location",
+          "type": "options",
+          "options": [
+            {
+              "id": "eastasia",
+              "name": "East Asia"
+            },
+            {
+              "id": "southeastasia",
+              "name": "Southeast Asia"
+            },
+            {
+              "id": "centralus",
+              "name": "Central US"
+            },
+            {
+              "id": "eastus",
+              "name": "East US"
+            },
+            {
+              "id": "eastus2",
+              "name": "East US 2"
+            },
+            {
+              "id": "westus",
+              "name": "West US"
+            },
+            {
+              "id": "northcentralus",
+              "name": "North Central US"
+            },
+            {
+              "id": "southcentralus",
+              "name": "South Central US"
+            },
+            {
+              "id": "northeurope",
+              "name": "North Europe"
+            },
+            {
+              "id": "westeurope",
+              "name": "West Europe"
+            },
+            {
+              "id": "japanwest",
+              "name": "Japan West"
+            },
+            {
+              "id": "japaneast",
+              "name": "Japan East"
+            },
+            {
+              "id": "brazilsouth",
+              "name": "Brazil South"
+            },
+            {
+              "id": "australiaeast",
+              "name": "Australia East"
+            },
+            {
+              "id": "australiasoutheast",
+              "name": "Australia Southeast"
+            },
+            {
+              "id": "southindia",
+              "name": "South India"
+            },
+            {
+              "id": "centralindia",
+              "name": "Central India"
+            },
+            {
+              "id": "westindia",
+              "name": "West India"
+            },
+            {
+              "id": "canadacentral",
+              "name": "Canada Central"
+            },
+            {
+              "id": "canadaeast",
+              "name": "Canada East"
+            },
+            {
+              "id": "uksouth",
+              "name": "UK South"
+            },
+            {
+              "id": "ukwest",
+              "name": "UK West"
+            },
+            {
+              "id": "westcentralus",
+              "name": "West Central US"
+            },
+            {
+              "id": "westus2",
+              "name": "West US 2"
+            },
+            {
+              "id": "koreacentral",
+              "name": "Korea Central"
+            },
+            {
+              "id": "koreasouth",
+              "name": "Korea South"
+            },
+            {
+              "id": "francecentral",
+              "name": "France Central"
+            },
+            {
+              "id": "francesouth",
+              "name": "France South"
+            },
+            {
+              "id": "australiacentral",
+              "name": "Australia Central"
+            },
+            {
+              "id": "australiacentral2",
+              "name": "Australia Central 2"
+            },
+            {
+              "id": "uaecentral",
+              "name": "UAE Central"
+            },
+            {
+              "id": "uaenorth",
+              "name": "UAE North"
+            },
+            {
+              "id": "southafricanorth",
+              "name": "South Africa North"
+            },
+            {
+              "id": "southafricawest",
+              "name": "South Africa West"
+            },
+            {
+              "id": "switzerlandnorth",
+              "name": "Switzerland North"
+            },
+            {
+              "id": "switzerlandwest",
+              "name": "Switzerland West"
+            },
+            {
+              "id": "germanynorth",
+              "name": "Germany North"
+            },
+            {
+              "id": "germanywestcentral",
+              "name": "Germany West Central"
+            },
+            {
+              "id": "norwaywest",
+              "name": "Norway West"
+            },
+            {
+              "id": "norwayeast",
+              "name": "Norway East"
+            }
+          ]
+        },
+        {
+          "name": "servicePlanID",
+          "viewName": "Service Plan",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "getServicePlans"
+        }
+      ]
+    },
+    {
       "name": "createServicePlan",
       "viewName": "Create Service Plan",
       "params": [
         {
           "name": "resourceGroupName",
-          "viewName": "Resource Group Name",
-          "type": "string"
+          "viewName": "Resource Group",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "getResourceGroups"
         },
         {
           "name": "location",
@@ -446,8 +646,10 @@
       "params": [
         {
           "name": "resourceGroupName",
-          "viewName": "Resource Group Name",
-          "type": "string"
+          "viewName": "Resource Group",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "getResourceGroups"
         },
         {
           "name": "location",
@@ -625,6 +827,101 @@
           "name": "slotName",
           "viewName": "Slot Name",
           "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "deleteApp",
+      "viewName": "Delete App",
+      "params": [
+        {
+          "name": "resourceGroupName",
+          "viewName": "Resource Group",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "getResourceGroups"
+        },
+        {
+          "name": "name",
+          "viewName": "App",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "getApps"
+        }
+      ]
+    },
+    {
+      "name": "deleteDeploymentSlot",
+      "viewName": "Delete Deployment Slot",
+      "params": [
+        {
+          "name": "resourceGroupName",
+          "viewName": "Resource Group",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "getResourceGroups"
+        },
+        {
+          "name": "appName",
+          "viewName": "App",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "getApps"
+        },
+        {
+          "name": "slotName",
+          "viewName": "Slot",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "getDeploymentSlots"
+        }
+      ]
+    },
+    {
+      "name": "deleteServicePlan",
+      "viewName": "Delete Service Plan",
+      "params": [
+        {
+          "name": "resourceGroupName",
+          "viewName": "Resource Group",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "getResourceGroups"
+        },
+        {
+          "name": "name",
+          "viewName": "Plan",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "getServicePlans"
+        }
+      ]
+    },
+    {
+      "name": "deployZipToApp",
+      "viewName": "Deploy zip to app",
+      "params": [
+        {
+          "name": "zipPath",
+          "viewName": "Zip Path",
+          "type": "string"
+        },
+        {
+          "name": "app",
+          "viewName": "Application",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "getApps"
+        },
+        {
+          "name": "username",
+          "viewName": "Username",
+          "type": "string"
+        },
+        {
+          "name": "password",
+          "viewName": "Password",
+          "type": "vault"
         }
       ]
     }

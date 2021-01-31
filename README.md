@@ -18,13 +18,23 @@ Creates a new web, mobile, or API app in an existing resource group, or updates 
 
 **Parameters**
 
-1. Resource Group: Resource group name
+1. Resource Group: Resource group
 2. Location: (String) Resource Location.
 3. App Name: Unique name of the app to create or update.
-4. Service Plan ID: Resource ID of the associated App Service plan, formatted as: "/subscriptions/{subscriptionID}/resourceGroups/{groupName}/providers/Microsoft.Web/serverfarms/{appServicePlanName}"
-
+4. Service Plan: The service plan for the new app.
 5. Site Config AlwaysOn (Boolean), true if Always On is enabled; otherwise, false.
 6. SiteConfig (Obj), Configuration of an App Service app.
+## Method: Clone App
+
+**Description:**
+This method clones an existing app service. It gets the original app and uses it's SiteConfig for the new webapp.
+
+**Parameters**
+
+1. Resource Group: Resource group
+3. App: The app to clone.
+2. Location: (String) New app location.
+4. Service Plan: The service plan for the new app.
 
 ## Method: Create Service Plan
 
@@ -34,6 +44,7 @@ This method creates a service plan following the [documentation](https://docs.mi
 
 **Parameters**
 
+1. Resource Group: Resource group
 1. Location: (String), Resource Location
 2. Service Plan Name: (String) Name of the App Service plan.
 
@@ -54,7 +65,57 @@ This method create s Deployment slot following the [documentation](https://docs.
 
 **Parameters**
 
-1. Resource Group Name: Resource group name
+1. Resource Group: Resource group
 2. Location: Resource Location
 3. App Name: Name of the app
 4. Slot Name: Slot name
+
+## Method: Delete App
+
+**Description:**
+
+This method deletes an app. More information can be found on Azure's [documentation](https://docs.microsoft.com/en-us/rest/api/appservice/webapps/delete)
+
+**Parameters**
+
+1. Resource Group: Resource group
+2. App: The name of the app to delete.
+
+
+## Method: Delete Deployment Slot
+
+**Description:**
+
+This method deletes a deployment slot. More information can be found on Azure's [documentation](https://docs.microsoft.com/en-us/rest/api/appservice/webapps/deletedeploymentslot)
+
+**Parameters**
+
+1. Resource Group: Resource group
+2. App: The name of the app that contains the deployment slot.
+3. Slot: The slot to delete.
+
+## Method: Delete Service Plan
+
+**Description:**
+
+This method deletes a service plan. More information can be found on Azure's [documentation](https://docs.microsoft.com/en-us/rest/api/appservice/webapps/deletedeploymentslot)
+
+**Parameters**
+
+1. Resource Group: Resource group
+2. Plan: The plan to delete.
+
+## Method: Deploy zip to app
+
+**Description:**
+
+This method deploys a zip file to a service app. More information can be found on Azure's [documentation](https://docs.microsoft.com/en-us/azure/app-service/deploy-zip)
+
+In order to use this method deployment username and password are required. These should be preconfigured on the app. You can further read on Azure's [documetnation](https://docs.microsoft.com/en-us/azure/app-service/deploy-configure-credentials)
+
+**Parameters**
+
+1. Zip Path - the path of the zip file to upload.
+2. App: The service app to upload the zip to
+3. Username: the deployment user to use.
+2. Password: the deployment user password.
